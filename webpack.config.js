@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -11,6 +12,7 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
+    new LoadablePlugin({ filename: 'stats.json', writeToDisk: true })
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
