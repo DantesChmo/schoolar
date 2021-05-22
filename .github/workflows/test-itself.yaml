@@ -10,9 +10,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - uses: borales/actions-yarn@v2.0.0
+      - uses: CultureHQ/actions-yarn@master
         with:
-          cmd: install
+          args: install
 
       - name: Run action
         uses: ./infra/actions/test
