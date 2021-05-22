@@ -3,7 +3,7 @@ description: 'Short description'
 author: 'name I want to become famous with'
 runs:
   using: 'node12'
-  main: 'infra/actions/index.js'
+  main: 'index.js'
 branding:
   icon: 'terminal'
   color: 'blue'
