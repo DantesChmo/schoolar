@@ -8,12 +8,13 @@ const pullNumber = payload.pull_request.number;
 const owner = payload.repository.owner.login;
 const repo = payload.repository.name;
 
-const result = await client.rest.pulls.listFiles({
-  owner,
-  repo,
-  pull_number: pullNumber
-});
+(async () => {
+  const result = await client.rest.pulls.listFiles({
+    owner,
+    repo,
+    pull_number: pullNumber
+  });
+  console.log(JSON.stringify(result));
 
-console.log(JSON.stringify(result));
-
-process.exit(0);
+  process.exit(0);
+})();
