@@ -1,4 +1,4 @@
-name: "test itself"
+name: "test packages"
 on:
   pull_request:
     types: [closed]
@@ -9,4 +9,10 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - uses: ./infra/actions/test
+
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+
+      - name: Run action
+        uses: ./infra/actions/test
