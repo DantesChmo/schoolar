@@ -1,0 +1,52 @@
+{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "files": [
+    "./out/**/*"
+  ],
+  "description": "{{description}}",
+  "main": "./out/index.js",
+  "scripts": {
+    "postinstall": "yarn build",
+    "prepublishOnly": "yarn clear && yarn && yarn test && yarn build",
+    "build": "yarn test:all && yarn build:dir && yarn build:badge",
+    "build:dir": "./node_modules/.bin/rollup --config",
+    "build:badge": "node ../../infra/tools/generate_badge",
+    "view:coverage": "open ./coverage/lcov-report/index.html",
+    "view:tests": "open ./reports/tests.html",
+    "view:build": "open ./reports/build.html",
+    "test": "./node_modules/.bin/jest --color --runInBand",
+    "test:all": "yarn test:badgets",
+    "test:coverage": "yarn test --coverage",
+    "test:badgets": "yarn test:coverage && ./node_modules/.bin/jest-coverage-badges",
+    "clear:coverage": "rm -rf coverage",
+    "clear:out": "rm -rf out",
+    "clear:deps": "rm -rf node_modules",
+    "clear": "yarn clear:out && yarn clear:deps"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@types/core-js": "^2.5.4",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.0",
+    "babel-jest": "^26.6.3",
+    "badges": "^4.24.0",
+    "jest": "^26.6.3",
+    "jest-coverage-badges": "^1.1.2",
+    "jest-html-reporter": "^3.4.0",
+    "rollup": "^2.48.0",
+    "rollup-plugin-import-css": "^2.0.1",
+    "rollup-plugin-size-snapshot": "^0.12.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-visualizer": "^5.5.0",
+    "ts-jest": "^26.5.6",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
+  }
+}
