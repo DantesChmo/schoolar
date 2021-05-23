@@ -1,6 +1,7 @@
 name: "test packages"
 on:
-  push:
+  pull_request:
+    types: [opened]
 jobs:
   test:
     # if: github.event.pull_request.merged == true
