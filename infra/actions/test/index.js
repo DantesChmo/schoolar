@@ -17,12 +17,11 @@ console.log(repo);
 const client = getOctokit('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');
 
 (async () => {
-  console.log(client);
   try {
     const result = await client.rest.pulls.listFiles({
       owner,
       repo,
-      pull_number: 1
+      pull_number: payload.pull_request.number
     });
 
     console.log(JSON.stringify(result));
