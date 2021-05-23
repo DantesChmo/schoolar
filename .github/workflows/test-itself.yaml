@@ -3,7 +3,7 @@ on:
   push:
 jobs:
   test:
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     runs-on: ubuntu-16.04
     steps:
       - name: Check out repository
