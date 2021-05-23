@@ -1,32 +1,22 @@
-const { context, getOctokit } = require('@actions/github/lib/github');
+const { get } = require('got');
+const { context } = require('@actions/github/lib/github');
 console.log('Hello I am action');
 
-
 const { payload } = context;
-const pullNumber = payload.pull_request;
+const pullNumber = payload.pull_request.number;
 const owner = payload.repository.owner.login;
 const repo = payload.repository.name;
 
-console.log(payload);
+console.log(process.env.GITHUB_REF);
+console.log(process.env.GITHUB_EVENT_PATH);
+console.log(payload.pull_request);
 console.log(pullNumber);
 console.log(owner);
 console.log(repo);
 
-const client = getOctokit('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');
-
 (async () => {
-  console.log(client);
-  try {
-    const result = await client.rest.pulls.listFiles({
-      owner,
-      repo,
-      pull_number: 1
-    });
-
-    console.log(JSON.stringify(result));
-  } catch (err) {
-    console.log(err);
-  }
+  const result = await get(`https://api.github.com/repos/${owner}/${repo}/pulls/${pullNumber}/files`);
+  console.log(result);
 
   process.exit(0);
 })();
