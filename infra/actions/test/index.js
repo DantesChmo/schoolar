@@ -7,7 +7,9 @@ const pullNumber = payload.pull_request;
 const owner = payload.repository.owner.login;
 const repo = payload.repository.name;
 
-console.log(payload);
+console.log(process.env.GITHUB_REF);
+console.log(process.env.GITHUB_EVENT_PATH);
+console.log(payload.pull_request);
 console.log(pullNumber);
 console.log(owner);
 console.log(repo);
