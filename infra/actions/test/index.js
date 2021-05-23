@@ -3,10 +3,11 @@ console.log('Hello I am action');
 
 
 const { payload } = context;
-const pullNumber = payload.pull_request.number;
+const pullNumber = payload.pull_request;
 const owner = payload.repository.owner.login;
 const repo = payload.repository.name;
 
+console.log(payload);
 console.log(pullNumber);
 console.log(owner);
 console.log(repo);
